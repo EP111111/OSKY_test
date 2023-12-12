@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eric_frontend_testing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat';
+    }
+
+    header {
+      height: 100px;
+      background-color: #fff;
+      padding: 10px;
+    }
+
+    .header-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80%;
+    }
+
+    .logo {
+      width: 150px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      margin: 0 15px;
+      position: relative;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000; /* Black font color */
+    }
+
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        padding: 10px;
+
+/* searched a bit of below on the internet */
+        width: auto;
+        white-space: nowrap; 
+
+    }
+
+
+    .social-icons a {
+      margin-left: 30px;
+      color: #00AEEF; 
+      text-decoration: none;
+    }
+
+    .below-header-space {
+      background-color: #00AEEF;
+      height: 100px; 
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <img src="https://i.imgur.com/9fx89Br.png" alt="Logo" class="logo">
+      <div class="social-icons">
+        <a href="#" onclick="confirmNavigation('https://www.youtube.com')"><i class="fab fa-youtube"></i></a>
+        <a href="#" onclick="confirmNavigation('https://twitter.com')"><i class="fab fa-twitter"></i></a>
+        <a href="#" onclick="confirmNavigation('https://www.linkedin.com')"><i class="fab fa-linkedin"></i></a>
+        <a href="#" >Logout</a>
+        <a href="#" >My Dashboard</a>
+      </div>
+    </div>
+    <nav>
+        <ul>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Safety Tools</a></li>
+          <li><a href="#">Training</a></li>
+          <li><a href="#">Engagement</a></li>
+          <li id="membership" onclick="clickSubmenu(this)">
+            <a href="#">Membership</a>
+            <div class="submenu" id="submenu" style="text-align: right;">
+                <a href="#">Latest News</a>  |
+                <a href="#">Subscribe to Newsletters</a> |
+                <a href="#">Videos</a>  |
+                <a href="#">Publications</a>
+            </div>
+          </li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+        
+      </nav>
+  </header>
+
+  <div class="below-header-space"></div>
+
+  <script>
+    document.addEventListener('click', function(event) {
+      const submenu = document.getElementById('submenu');
+      const membership = document.getElementById('membership');
+
+    //   didn't know haow to do isClickedOutside, searched it on the internet
+      const isClickedOutside = !membership.contains(event.target) && !submenu.contains(event.target);
+      
+      if (submenu.style.display === 'block' && isClickedOutside) {
+        submenu.style.display = 'none';
+      }
+    });
+
+    function clickSubmenu(menuItem) {
+      const submenu = document.getElementById('submenu');
+      if (submenu.style.display === 'none') {
+            submenu.style.display = 'block';
+        } else {
+            submenu.style.display = 'none';
+        }
+    }
+
+    function confirmNavigation(url) {
+      const isConfirmed = confirm('Do you want to navigate to a different domain?');
+      if (isConfirmed) {
+        window.location.href = url;
+      }
+    }
+
+  
+  </script>
+
+</body>
+</html>
